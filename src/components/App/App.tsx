@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import { Provider } from 'react-redux'
+import PostForm from '../PostForm'
+import PostList from '../PostList'
+import store from '../../store'
 import './App.css';
 
 class App extends Component {
@@ -20,6 +24,13 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <Provider store={store}>
+          <div>
+            <PostForm />
+            <hr />
+            <PostList propFromParent={7} />
+          </div>
+        </Provider>
       </div>
     );
   }
