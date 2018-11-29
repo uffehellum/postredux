@@ -22,7 +22,7 @@ interface State {
   // posts: Post[]
 }
 
-class Posts extends Component<Props, State, any> {
+class PostList extends Component<Props, State, any> {
 
   constructor(props: Props) {
     super(props)
@@ -57,7 +57,7 @@ class Posts extends Component<Props, State, any> {
   render = () =>
     <div>
       <h1>Posts</h1>
-      {/* {this.props && this.props.posts && this.renderPosts(this.props.posts)} */}
+      {this.props && this.props.posts && this.renderPosts(this.props.posts)}
     </div>
 }
 
@@ -75,7 +75,7 @@ function mapStateToProps(state: myReduxState, ownProps: OwnProps): StateProps {
 function mapDispatchToProps(dispatch: any, ownProps: OwnProps): DispatchProps {
   return {
     // ...ownProps,
-    fetchPosts : fetchPosts.bind(dispatch)
+    fetchPosts : () => fetchPosts()(dispatch)
   }
 }
 
@@ -86,4 +86,4 @@ interface initialState {
 export default connect
   <myReduxState, DispatchProps, OwnProps, initialState>
   (mapStateToProps, mapDispatchToProps)
-  (Posts)
+  (PostList)
